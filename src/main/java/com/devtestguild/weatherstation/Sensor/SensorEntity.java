@@ -16,13 +16,13 @@ public class SensorEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @ApiObjectField(description = "Type of sensor, like DHT11 for a temperature and humidity sensor")
+    @ApiObjectField(description = "Type of sensor, e.g. DHT11 for a temperature and humidity sensor")
     private String sensorType;
 
-    @ApiObjectField(description = "Type of data that sensor records, like temperature")
+    @ApiObjectField(description = "Type of data that sensor records, e.g. temperature")
     private String typeOfData;
 
-    @ApiObjectField(description = "Place where sensor is located, like Gouda")
+    @ApiObjectField(description = "Place where sensor is located, e.g. Gouda")
     private String location;
 
     public SensorEntity() {
