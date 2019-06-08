@@ -1,4 +1,4 @@
-package com.devtestguild.weatherstation;
+package com.devtestguild.weatherstation.Sensordata;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,24 +15,24 @@ public class SensorDataService {
         this.sensorDataRepository = sensorDataRepository;
     }
 
-    public List<SensorDataEntity> findAll() {
+    List<SensorDataEntity> findAll() {
         return sensorDataRepository.findAll();
     }
 
-    public void createNewSensorDataList(List<SensorDataEntity> sensorDataEntityList){
+    void createNewSensorDataList(List<SensorDataEntity> sensorDataEntityList){
         for(SensorDataEntity sensorDataEntity:sensorDataEntityList){
             sensorDataRepository.save(sensorDataEntity);
         }
     }
 
-    public void createNewSensorData(SensorDataEntity sensorDataEntity){
-        sensorDataRepository.save(sensorDataEntity);
-    }
-
-    public List<SensorDataEntity> deleteById(int id){
+    List<SensorDataEntity> deleteById(int id){
         sensorDataRepository.deleteById(id);
 
         return sensorDataRepository.findAll();
+    }
+
+    List<SensorDataEntity> getDataFromSensor(int id){
+        return sensorDataRepository.findBySensorId(id);
     }
 
 }

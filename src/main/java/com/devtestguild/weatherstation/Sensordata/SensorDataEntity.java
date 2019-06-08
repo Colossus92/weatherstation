@@ -1,10 +1,13 @@
-package com.devtestguild.weatherstation;
+package com.devtestguild.weatherstation.Sensordata;
+
+import org.jsondoc.core.annotation.ApiObject;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+@ApiObject
 @Entity
 @Table(name="sensor_data")
 public class SensorDataEntity {

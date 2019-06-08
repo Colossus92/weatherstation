@@ -1,11 +1,16 @@
-package com.devtestguild.weatherstation;
+package com.devtestguild.weatherstation.Sensordata;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiMethod;
+import org.jsondoc.core.annotation.ApiPathParam;
+import org.jsondoc.core.pojo.ApiVisibility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(name = "Sensordata services", description = "Methods for managing sensordata entries", visibility = ApiVisibility.PUBLIC)
 @RestController
 @RequestMapping(value = "/sensordata")
 @Slf4j
@@ -18,20 +23,28 @@ public class SensorDataController {
         this.sensorDataService = sensorDataService;
     }
 
+    @ApiMethod(description = "Get all sensordata entries")
     @RequestMapping(value = "/get-all", method = RequestMethod.GET)
     public List<SensorDataEntity> getAllData(){
         return sensorDataService.findAll();
     }
 
+    @ApiMethod(description = "Create new sensordata entries")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<SensorDataEntity> createNewSensorDataEntityList(@RequestBody List<SensorDataEntity> sensorDataEntityList){
         sensorDataService.createNewSensorDataList(sensorDataEntityList);
         return sensorDataService.findAll();
     }
 
+    @ApiMethod(description = "Delete sensordata entry by ID")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public List<SensorDataEntity> remove(@PathVariable int id){
+    public List<SensorDataEntity> remove(@ApiPathParam(description = "Sensordata entity ID") @PathVariable int id){
         return sensorDataService.deleteById(id);
     }
 
+    @ApiMethod(description = "Retrieve data by sensor ID")
+    @RequestMapping(value = "/{sensorId}/get-data", method = RequestMethod.GET)
+    public List<SensorDataEntity> getDataFromSensor(@ApiPathParam(description = "Sensor ID") @PathVariable int sensorId){
+        return sensorDataService.getDataFromSensor(sensorId);
+    }
 }

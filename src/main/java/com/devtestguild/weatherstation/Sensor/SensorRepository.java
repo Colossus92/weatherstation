@@ -1,4 +1,4 @@
-package com.devtestguild.weatherstation;
+package com.devtestguild.weatherstation.Sensor;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
