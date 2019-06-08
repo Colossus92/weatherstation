@@ -21,7 +21,7 @@ public class SensorDataEntity {
     @ApiObjectField(description = "Recorded value of sensordata")
     private String value;
 
-    @ApiObjectField(description = "Type of datarecord, like temperature")
+    @ApiObjectField(description = "Type of datarecord, e.g. temperature")
     @Column(name="data_type")
     private String typeOfData;
 
