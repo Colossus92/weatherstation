@@ -38,13 +38,13 @@ public class SensorDataController {
 
     @ApiMethod(description = "Delete sensordata entry by ID")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public List<SensorDataEntity> remove(@ApiPathParam(description = "Sensordata entity ID") @PathVariable int id){
+    public List<SensorDataEntity> remove(@ApiPathParam(name = "Sensordata entity ID", description = "ID of data record which has to be deleted") @PathVariable int id){
         return sensorDataService.deleteById(id);
     }
 
     @ApiMethod(description = "Retrieve data by sensor ID")
     @RequestMapping(value = "/{sensorId}/get-data", method = RequestMethod.GET)
-    public List<SensorDataEntity> getDataFromSensor(@ApiPathParam(description = "Sensor ID") @PathVariable int sensorId){
+    public List<SensorDataEntity> getDataFromSensor(@ApiPathParam(name="Sensor ID", description = "ID of sensor which recorded desired data") @PathVariable int sensorId){
         return sensorDataService.getDataFromSensor(sensorId);
     }
 }
