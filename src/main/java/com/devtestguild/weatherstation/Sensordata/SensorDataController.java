@@ -51,7 +51,7 @@ public class SensorDataController {
 
     @ApiMethod(description = "Retrieve data between timestamp")
     @RequestMapping(value = "/get-between-timestamp", method = RequestMethod.POST)
-    public List<SensorDataEntity> getDataBetween(BetweenDateTime betweenDateTimeRequest){
+    public List<SensorDataEntity> getDataBetween(@RequestBody BetweenDateTime betweenDateTimeRequest){
         return sensorDataService.getDataBetweenDateTime(betweenDateTimeRequest.getFrom(), betweenDateTimeRequest.getToInclusive());
     }
 }
