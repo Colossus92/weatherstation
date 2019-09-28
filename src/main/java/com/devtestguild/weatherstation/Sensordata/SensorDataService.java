@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
@@ -36,7 +37,7 @@ public class SensorDataService {
         return sensorDataRepository.findBySensorId(id);
     }
 
-    List<SensorDataEntity> getDataBetweenDateTime(LocalDateTime from, LocalDateTime toInclusive) {
+    List<SensorDataEntity> getDataBetweenDateTime(ZonedDateTime from, ZonedDateTime toInclusive) {
         return sensorDataRepository.findAllByTimestampBetween(from, toInclusive);
     }
 }
