@@ -28,14 +28,18 @@ public class SensorDataEntity {
     @ApiObjectField(description = "ID of sensor made record")
     private int sensorId;
 
+    @ApiObjectField(description = "Date and time of data record")
+    private LocalDateTime timeStamp;
+
     public SensorDataEntity(){
     }
 
-    public SensorDataEntity(int id, String value, String typeOfData, int sensorId) {
+    public SensorDataEntity(int id, String value, String typeOfData, int sensorId, LocalDateTime timeStamp) {
         this.id = id;
         this.value = value;
         this.typeOfData = typeOfData;
         this.sensorId = sensorId;
+        this.timeStamp = timeStamp;
     }
 
     public int getId() {
@@ -52,5 +56,9 @@ public class SensorDataEntity {
 
     public int getSensorId() {
         return sensorId;
+    }
+
+    public LocalDateTime getTimeStamp(){
+        return timeStamp;
     }
 }
