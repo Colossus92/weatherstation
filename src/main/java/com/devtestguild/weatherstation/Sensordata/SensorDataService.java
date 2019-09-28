@@ -3,6 +3,7 @@ package com.devtestguild.weatherstation.Sensordata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -35,4 +36,7 @@ public class SensorDataService {
         return sensorDataRepository.findBySensorId(id);
     }
 
+    List<SensorDataEntity> getDataBetweenDateTime(LocalDateTime from, LocalDateTime toInclusive) {
+        return sensorDataRepository.findAllByTimestampBetween(from, toInclusive);
+    }
 }

@@ -1,5 +1,6 @@
 package com.devtestguild.weatherstation.Sensordata;
 
+import com.devtestguild.weatherstation.RequestBodies.BetweenDateTime;
 import lombok.extern.slf4j.Slf4j;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiMethod;
@@ -46,5 +47,11 @@ public class SensorDataController {
     @RequestMapping(value = "/{sensorId}/get-data", method = RequestMethod.GET)
     public List<SensorDataEntity> getDataFromSensor(@ApiPathParam(name="Sensor ID", description = "ID of sensor which recorded desired data") @PathVariable int sensorId){
         return sensorDataService.getDataFromSensor(sensorId);
+    }
+
+    @ApiMethod(description = "Retrieve data between timestamp")
+    @RequestMapping(value = "/get-between-timestamp")
+    public List<SensorDataEntity> getDataBetween(BetweenDateTime betweenDateTimeRequest){
+        return sensorDataService.getDataBetweenDateTime(betweenDateTimeRequest.getFrom(), betweenDateTimeRequest.getToInclusive());
     }
 }
