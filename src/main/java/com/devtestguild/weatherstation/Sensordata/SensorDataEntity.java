@@ -27,7 +27,6 @@ public class SensorDataEntity {
     private int sensorId;
 
     @ApiObjectField(description = "Date and time of data record")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime timestamp;
 
     public SensorDataEntity(){
