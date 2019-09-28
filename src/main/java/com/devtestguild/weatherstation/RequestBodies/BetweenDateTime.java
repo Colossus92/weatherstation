@@ -1,22 +1,22 @@
 package com.devtestguild.weatherstation.RequestBodies;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class BetweenDateTime {
 
-    private LocalDateTime from;
-    private LocalDateTime toInclusive;
+    private ZonedDateTime from;
+    private ZonedDateTime toInclusive;
 
-    public BetweenDateTime(LocalDateTime from, LocalDateTime toInclusive) {
+    public BetweenDateTime(ZonedDateTime from, ZonedDateTime toInclusive) {
         this.from = from;
         this.toInclusive = toInclusive;
     }
 
-    public LocalDateTime getFrom() {
+    public ZonedDateTime getFrom() {
         return from;
     }
 
-    public LocalDateTime getToInclusive() {
+    public ZonedDateTime getToInclusive() {
         return toInclusive;
     }
 }

@@ -5,6 +5,7 @@ import org.jsondoc.core.annotation.ApiObjectField;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @ApiObject
 @Entity
@@ -27,12 +28,12 @@ public class SensorDataEntity {
     private int sensorId;
 
     @ApiObjectField(description = "Date and time of data record")
-    private LocalDateTime timestamp;
+    private ZonedDateTime timestamp;
 
     public SensorDataEntity(){
     }
 
-    public SensorDataEntity(int id, String value, String typeOfData, int sensorId, LocalDateTime timeStamp) {
+    public SensorDataEntity(int id, String value, String typeOfData, int sensorId, ZonedDateTime timeStamp) {
         this.id = id;
         this.value = value;
         this.typeOfData = typeOfData;
@@ -56,7 +57,7 @@ public class SensorDataEntity {
         return sensorId;
     }
 
-    public LocalDateTime getTimestamp(){
+    public ZonedDateTime getTimestamp(){
         return timestamp;
     }
 }
