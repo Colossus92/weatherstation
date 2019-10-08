@@ -7,6 +7,7 @@ import org.jsondoc.core.annotation.ApiMethod;
 import org.jsondoc.core.annotation.ApiPathParam;
 import org.jsondoc.core.pojo.ApiVisibility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,13 +27,13 @@ public class SensorDataController {
 
     @ApiMethod(description = "Get all sensordata entries")
     @RequestMapping(value = "/get-all", method = RequestMethod.GET)
-    public List<SensorDataEntity> getAllData(){
+    public ResponseEntity getAllData(){
         return sensorDataService.findAll();
     }
 
     @ApiMethod(description = "Create new sensordata entries")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public List<SensorDataEntity> createNewSensorDataEntityList(@RequestBody List<SensorDataEntity> sensorDataEntityList){
+    public ResponseEntity createNewSensorDataEntityList(@RequestBody List<SensorDataEntity> sensorDataEntityList){
         sensorDataService.createNewSensorDataList(sensorDataEntityList);
         return sensorDataService.findAll();
     }

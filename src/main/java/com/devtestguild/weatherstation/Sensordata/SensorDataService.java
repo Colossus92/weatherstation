@@ -1,9 +1,10 @@
 package com.devtestguild.weatherstation.Sensordata;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -17,11 +18,13 @@ public class SensorDataService {
         this.sensorDataRepository = sensorDataRepository;
     }
 
-    List<SensorDataEntity> findAll() {
-        return sensorDataRepository.findAll();
+    public ResponseEntity findAll() {
+        List<SensorDataEntity> sensorDataEntityList = sensorDataRepository.findAll();
+        return ResponseEntity.status(HttpStatus.OK)
+        .body(sensorDataEntityList);
     }
 
-    void createNewSensorDataList(List<SensorDataEntity> sensorDataEntityList){
+    public void createNewSensorDataList(List<SensorDataEntity> sensorDataEntityList){
         for(SensorDataEntity sensorDataEntity:sensorDataEntityList){
             sensorDataRepository.save(sensorDataEntity);
         }
