@@ -28,7 +28,6 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 @TestComponent
 @RunWith(SpringRunner.class)
-@DataJpaTest
 public class SensorDataServiceTest {
 
 
@@ -79,7 +78,7 @@ public class SensorDataServiceTest {
         sensorDataService.createNewSensorDataList(sensorDataEntityList);
 
         List<SensorDataEntity> savedSensorDataEntities = sensorDataRepository.findAll();
-        assertThat(savedSensorDataEntities.size(), equalTo(1));
+        assertThat(savedSensorDataEntities.size(), equalTo(5));
     }
 
 }
