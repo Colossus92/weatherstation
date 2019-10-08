@@ -26,33 +26,32 @@ public class SensorDataController {
     }
 
     @ApiMethod(description = "Get all sensordata entries")
-    @RequestMapping(value = "/get-all", method = RequestMethod.GET)
-    public ResponseEntity getAllData(){
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<SensorDataEntity>> getAllData(){
         return sensorDataService.findAll();
     }
 
     @ApiMethod(description = "Create new sensordata entries")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity createNewSensorDataEntityList(@RequestBody List<SensorDataEntity> sensorDataEntityList){
-        sensorDataService.createNewSensorDataList(sensorDataEntityList);
-        return sensorDataService.findAll();
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> createNewSensorDataEntityList(@RequestBody List<SensorDataEntity> sensorDataEntityList){
+        return sensorDataService.createNewSensorDataList(sensorDataEntityList);
     }
 
     @ApiMethod(description = "Delete sensordata entry by ID")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public List<SensorDataEntity> remove(@ApiPathParam(name = "Sensordata entity ID", description = "ID of data record which has to be deleted") @PathVariable int id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> remove(@ApiPathParam(name = "Sensordata entity ID", description = "ID of data record which has to be deleted") @PathVariable int id){
         return sensorDataService.deleteById(id);
     }
 
     @ApiMethod(description = "Retrieve data by sensor ID")
-    @RequestMapping(value = "/{sensorId}/get-data", method = RequestMethod.GET)
-    public List<SensorDataEntity> getDataFromSensor(@ApiPathParam(name="Sensor ID", description = "ID of sensor which recorded desired data") @PathVariable int sensorId){
+    @RequestMapping(value = "/sensor/{sensorId}", method = RequestMethod.GET)
+    public ResponseEntity<List<SensorDataEntity>> getDataFromSensor(@ApiPathParam(name="Sensor ID", description = "ID of sensor which recorded desired data") @PathVariable int sensorId){
         return sensorDataService.getDataFromSensor(sensorId);
     }
 
     @ApiMethod(description = "Retrieve data between timestamp")
     @RequestMapping(value = "/get-between-timestamp", method = RequestMethod.POST)
-    public List<SensorDataEntity> getDataBetween(@RequestBody BetweenDateTime betweenDateTimeRequest){
+    public ResponseEntity<List<SensorDataEntity>> getDataBetween(@RequestBody BetweenDateTime betweenDateTimeRequest){
         return sensorDataService.getDataBetweenDateTime(betweenDateTimeRequest.getFrom(), betweenDateTimeRequest.getToInclusive());
     }
 }

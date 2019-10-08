@@ -1,7 +1,6 @@
 package com.devtestguild.weatherstation.Sensordata;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,29 +17,30 @@ public class SensorDataService {
         this.sensorDataRepository = sensorDataRepository;
     }
 
-    public ResponseEntity findAll() {
+    public ResponseEntity<List<SensorDataEntity>> findAll() {
         List<SensorDataEntity> sensorDataEntityList = sensorDataRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK)
-        .body(sensorDataEntityList);
+        return ResponseEntity.ok().body(sensorDataEntityList);
     }
 
-    public void createNewSensorDataList(List<SensorDataEntity> sensorDataEntityList){
+    public ResponseEntity<Void> createNewSensorDataList(List<SensorDataEntity> sensorDataEntityList){
         for(SensorDataEntity sensorDataEntity:sensorDataEntityList){
             sensorDataRepository.save(sensorDataEntity);
         }
+
+        return ResponseEntity.noContent().build();
     }
 
-    List<SensorDataEntity> deleteById(int id){
+    ResponseEntity<Void> deleteById(int id){
         sensorDataRepository.deleteById(id);
 
-        return sensorDataRepository.findAll();
+        return ResponseEntity.noContent().build();
     }
 
-    List<SensorDataEntity> getDataFromSensor(int id){
-        return sensorDataRepository.findBySensorId(id);
+    ResponseEntity<List<SensorDataEntity>> getDataFromSensor(int id){
+        return ResponseEntity.ok().body(sensorDataRepository.findBySensorId(id));
     }
 
-    List<SensorDataEntity> getDataBetweenDateTime(ZonedDateTime from, ZonedDateTime toInclusive) {
-        return sensorDataRepository.findAllByTimestampBetween(from, toInclusive);
+    ResponseEntity<List<SensorDataEntity>> getDataBetweenDateTime(ZonedDateTime from, ZonedDateTime toInclusive) {
+        return ResponseEntity.ok().body(sensorDataRepository.findAllByTimestampBetween(from, toInclusive));
     }
 }
