@@ -1,8 +1,10 @@
 package com.devtestguild.weatherstation.Sensor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.xml.ws.Response;
 import java.util.List;
 
 @Service
@@ -16,11 +18,13 @@ public class SensorService {
     }
 
 
-    List<SensorEntity> findAll() {
-        return sensorRepository.findAll();
+    ResponseEntity<List<SensorEntity>> findAll() {
+        return ResponseEntity.ok().body(sensorRepository.findAll());
     }
 
-    void createNewSensor(SensorEntity sensorEntity) {
+    ResponseEntity<Void> createNewSensor(SensorEntity sensorEntity) {
         sensorRepository.save(sensorEntity);
+
+        return ResponseEntity.noContent().build();
     }
 }

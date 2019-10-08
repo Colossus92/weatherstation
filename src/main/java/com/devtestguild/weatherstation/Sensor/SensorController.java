@@ -5,6 +5,7 @@ import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiMethod;
 import org.jsondoc.core.pojo.ApiVisibility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,17 +25,17 @@ public class SensorController {
     }
 
     @ApiMethod(description = "Retrieve all sensor entities")
-    @RequestMapping(value = "/get-all", method = RequestMethod.GET)
-    public List<SensorEntity> getDataFromSensor(){
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<SensorEntity>> getDataFromSensor(){
 
         return sensorService.findAll();
     }
 
     @ApiMethod(description = "Create new sensor entity")
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public List<SensorEntity> createNewSensorEntity(@RequestBody SensorEntity sensorEntity){
-        sensorService.createNewSensor(sensorEntity);
-        return sensorService.findAll();
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> createNewSensorEntity(@RequestBody SensorEntity sensorEntity){
+
+        return sensorService.createNewSensor(sensorEntity);
     }
 
 
